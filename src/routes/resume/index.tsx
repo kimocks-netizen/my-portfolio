@@ -447,7 +447,7 @@ function ResumePage() {
                     <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-1">{g.label}</p>
                     <div className="flex flex-wrap gap-1">
                       {g.items.map(s => (
-                        <span key={s} className="text-[10px] px-1.5 py-0.5 rounded-full bg-accent border border-border text-accent-foreground">
+                        <span key={s} className="text-[10px] px-1.5 py-0.5 rounded-full bg-gray-100 border border-gray-200 text-gray-700">
                           {s}
                         </span>
                       ))}

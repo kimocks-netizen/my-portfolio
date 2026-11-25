@@ -38,8 +38,8 @@ export function Footer() {
               />
             </a>
             <p className="text-xs text-muted-foreground mt-1 max-w-xs">
-              <span className="dark:text-white text-black">I build production systems that scale —</span><br />
-              <span className="dark:text-white text-black">fintech, cloud-native, AI-powered.</span>
+              <span className="dark:text-white text-black">Senior Full-Stack Engineer & AWS Specialist</span><br />
+              <span className="dark:text-white/80 text-black/80">Building production systems that scale — fintech platforms, cloud-native infrastructure, AI-powered applications, and real-time data pipelines.</span>
             </p>
           </div>
 
