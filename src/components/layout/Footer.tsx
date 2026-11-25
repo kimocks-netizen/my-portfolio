@@ -25,9 +25,21 @@ export function Footer() {
 
           {/* Brand */}
           <div className="text-center md:text-left">
-            <a href="#hero" className="text-xl font-bold text-brand-gradient">BTC</a>
+            <a href="#hero" className="inline-block">
+              <img
+                src="/dark-FullLogo.png"
+                alt="BTC Logo"
+                className="dark:block hidden h-16 w-auto object-contain"
+              />
+              <img
+                src="/light-Logo.png"
+                alt="BTC Logo"
+                className="dark:hidden block h-16 w-auto object-contain"
+              />
+            </a>
             <p className="text-xs text-muted-foreground mt-1 max-w-xs">
-              Senior Full-Stack Engineer & AWS Specialist.<br />Building systems that scale.
+              <span className="dark:text-white text-black">I build production systems that scale —</span><br />
+              <span className="dark:text-white text-black">fintech, cloud-native, AI-powered.</span>
             </p>
           </div>
 

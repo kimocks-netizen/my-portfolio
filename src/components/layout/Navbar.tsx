@@ -85,9 +85,13 @@ export function Navbar() {
         {/* Brand */}
         <button
           onClick={() => handleNavClick('#hero')}
-          className="font-bold text-lg text-brand-gradient select-none"
+          className="flex items-center select-none"
         >
-          BTC
+          <img
+            src="/SmallLogo.png"
+            alt="BTC Logo"
+            className="h-9 w-auto object-contain"
+          />
         </button>
 
         {/* Desktop nav */}

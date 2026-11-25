@@ -342,12 +342,9 @@ function ResumePage() {
         {/* Header */}
         <div className="bg-brand-gradient p-7 text-white">
           <div className="flex items-center gap-5">
-            {/* Logo + Photo stacked */}
-            <div className="flex flex-col items-center gap-2 flex-shrink-0">
-              <img src="/dark-FullLogo.png" alt="BTC Logo" className="h-9 w-auto object-contain" />
-              <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-white/30 shadow-lg">
-                <img src={personal.photo} alt={personal.name} className="w-full h-full object-cover object-top" />
-              </div>
+            {/* Photo */}
+            <div className="flex-shrink-0 w-20 h-20 rounded-full overflow-hidden border-2 border-white/30 shadow-lg">
+              <img src={personal.photo} alt={personal.name} className="w-full h-full object-cover object-top" />
             </div>
             <div className="flex-1 min-w-0">
               <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">{personal.name}</h1>
