@@ -1,6 +1,7 @@
 import { motion } from 'motion/react'
 import { GraduationCap, MapPin, Calendar, Clock, ExternalLink } from 'lucide-react'
 import { useEducation } from '@/features/education/queries'
+import { TechMarquee } from '@/components/effects/TechMarquee'
 
 const DEGREE_COLORS: Record<string, string> = {
   'uj-masters':     'from-primary/20 to-secondary/10',
@@ -86,6 +87,18 @@ export function Education() {
             </motion.div>
           ))}
         </div>
+
+        {/* Tech marquee */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-12"
+        >
+          <TechMarquee />
+        </motion.div>
+
       </div>
     </section>
   )

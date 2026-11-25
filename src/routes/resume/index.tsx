@@ -326,16 +326,11 @@ function DownloadDropdown() {
 function ResumePage() {
   const navigate = useNavigate()
 
-  // Force light mode for resume — restore on leave
-  useEffect(() => {
-    const html = document.documentElement
-    const had = html.classList.contains('dark')
-    html.classList.remove('dark')
-    return () => { if (had) html.classList.add('dark') }
-  }, [])
+  // Do NOT force light mode — keep user's theme for the page bg
+  // Only the resume sheet itself is hardcoded white
 
   return (
-    <div className="min-h-screen bg-white pt-16 pb-12 px-4">
+    <div className="min-h-screen bg-background pt-16 pb-12 px-4">
 
       {/* Toolbar */}
       <div className="max-w-4xl mx-auto flex items-center justify-between mb-6">
