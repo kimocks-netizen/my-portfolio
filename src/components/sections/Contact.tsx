@@ -10,6 +10,12 @@ const GithubIcon = () => (
   </svg>
 )
 
+const LinkedInIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+  </svg>
+)
+
 const reveal = (delay = 0) => ({
   initial: { opacity: 0, y: 28 },
   whileInView: { opacity: 1, y: 0 },
@@ -41,9 +47,9 @@ export function Contact() {
           </p>
         </motion.div>
 
-        <div className="max-w-2xl mx-auto space-y-4">
+        <div className="max-w-4xl mx-auto space-y-4">
 
-          {/* Email — primary CTA */}
+          {/* Email — full width primary CTA */}
           <motion.div {...reveal(0.1)} className="rounded-2xl border border-border bg-card shadow-card overflow-hidden">
             <div className="h-1 bg-brand-gradient" />
             <div className="p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -61,13 +67,11 @@ export function Contact() {
                   onClick={copyEmail}
                   className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-border bg-accent text-sm font-medium hover:bg-muted transition-colors"
                 >
-                  {copied
-                    ? <><Check size={13} className="text-emerald-500" /> Copied</>
-                    : <><Copy size={13} /> Copy</>}
+                  {copied ? <><Check size={13} className="text-emerald-500" /> Copied</> : <><Copy size={13} /> Copy</>}
                 </button>
                 <a
                   href={`mailto:${personal.email}`}
-                  className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full bg-brand-gradient text-white text-sm font-semibold shadow-glow hover:opacity-90 transition-opacity"
+                  className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full bg-pill text-white text-sm font-semibold shadow-pill hover:opacity-90 transition-opacity"
                 >
                   <Mail size={13} /> Send Email
                 </a>
@@ -75,80 +79,70 @@ export function Contact() {
             </div>
           </motion.div>
 
-          {/* GitHub */}
-          <motion.div {...reveal(0.15)}>
+          {/* One row — GitHub, LinkedIn, Location, Resume */}
+          <motion.div {...reveal(0.15)} className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+
+            {/* GitHub */}
             <a
               href="https://github.com/kimocks-netizen"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between gap-4 p-5 rounded-2xl border border-border bg-card shadow-card hover:border-foreground/40 hover:text-foreground transition-all duration-200 group"
+              className="flex flex-col items-center gap-2 p-4 rounded-2xl border border-border bg-card shadow-card hover:border-foreground/40 hover:shadow-glow transition-all duration-200 group text-center"
             >
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-accent flex items-center justify-center flex-shrink-0 text-muted-foreground group-hover:text-foreground transition-colors">
-                  <GithubIcon />
-                </div>
-                <div>
-                  <p className="text-xs text-muted-foreground">GitHub</p>
-                  <p className="text-sm font-medium">kimocks-netizen</p>
-                </div>
+              <div className="w-9 h-9 rounded-xl bg-accent flex items-center justify-center text-muted-foreground group-hover:text-foreground transition-colors">
+                <GithubIcon />
               </div>
-              <ExternalLink size={14} className="text-muted-foreground group-hover:text-foreground transition-colors" />
+              <div>
+                <p className="text-[10px] text-muted-foreground">GitHub</p>
+                <p className="text-xs font-medium leading-tight">kimocks-netizen</p>
+              </div>
+              <ExternalLink size={11} className="text-muted-foreground group-hover:text-foreground transition-colors" />
             </a>
-          </motion.div>
 
-          {/* LinkedIn */}
-          <motion.div {...reveal(0.22)}>
+            {/* LinkedIn */}
             <a
               href={personal.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between gap-4 p-5 rounded-2xl border border-border bg-card shadow-card hover:border-primary/40 hover:text-primary transition-all duration-200 group"
+              className="flex flex-col items-center gap-2 p-4 rounded-2xl border border-border bg-card shadow-card hover:border-primary/40 hover:shadow-glow transition-all duration-200 group text-center"
             >
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-accent flex items-center justify-center flex-shrink-0 text-muted-foreground group-hover:text-primary transition-colors">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                </div>
-                <div>
-                  <p className="text-xs text-muted-foreground">LinkedIn</p>
-                  <p className="text-sm font-medium">in/brynetinashechikomo</p>
-                </div>
+              <div className="w-9 h-9 rounded-xl bg-accent flex items-center justify-center text-muted-foreground group-hover:text-primary transition-colors">
+                <LinkedInIcon />
               </div>
-              <ExternalLink size={14} className="text-muted-foreground group-hover:text-primary transition-colors" />
+              <div>
+                <p className="text-[10px] text-muted-foreground">LinkedIn</p>
+                <p className="text-xs font-medium leading-tight">brynetinashechikomo</p>
+              </div>
+              <ExternalLink size={11} className="text-muted-foreground group-hover:text-primary transition-colors" />
             </a>
-          </motion.div>
 
-          {/* Location */}
-          <motion.div {...reveal(0.22)}>
-            <div className="flex items-center gap-3 p-5 rounded-2xl border border-border bg-card shadow-card">
-              <div className="w-9 h-9 rounded-xl bg-accent flex items-center justify-center flex-shrink-0">
+            {/* Location */}
+            <div className="flex flex-col items-center gap-2 p-4 rounded-2xl border border-border bg-card shadow-card text-center">
+              <div className="w-9 h-9 rounded-xl bg-accent flex items-center justify-center">
                 <MapPin size={16} className="text-muted-foreground" />
               </div>
               <div>
-                <p className="text-xs text-muted-foreground">Location</p>
-                <p className="text-sm font-medium">Pretoria, South Africa</p>
+                <p className="text-[10px] text-muted-foreground">Location</p>
+                <p className="text-xs font-medium leading-tight">Pretoria, South Africa</p>
               </div>
             </div>
-          </motion.div>
 
-          {/* Resume */}
-          <motion.div {...reveal(0.29)}>
+            {/* Resume */}
             <button
               onClick={() => navigate({ to: '/resume' })}
-              className="w-full flex items-center justify-between gap-4 p-5 rounded-2xl border border-border bg-card shadow-card hover:border-secondary/40 hover:text-secondary transition-all duration-200 group"
+              className="flex flex-col items-center gap-2 p-4 rounded-2xl border border-border bg-card shadow-card hover:border-secondary/40 hover:shadow-purple transition-all duration-200 group text-center"
             >
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                  <FileText size={16} className="text-secondary" />
-                </div>
-                <div>
-                  <p className="text-xs text-muted-foreground">Resume</p>
-                  <p className="text-sm font-medium text-left">View Resume</p>
-                </div>
+              <div className="w-9 h-9 rounded-xl bg-secondary/10 flex items-center justify-center">
+                <FileText size={16} className="text-secondary" />
               </div>
-              <ExternalLink size={14} className="text-muted-foreground group-hover:text-secondary transition-colors" />
+              <div>
+                <p className="text-[10px] text-muted-foreground">Resume</p>
+                <p className="text-xs font-medium leading-tight">View Resume</p>
+              </div>
+              <ExternalLink size={11} className="text-muted-foreground group-hover:text-secondary transition-colors" />
             </button>
-          </motion.div>
 
+          </motion.div>
         </div>
       </div>
     </section>

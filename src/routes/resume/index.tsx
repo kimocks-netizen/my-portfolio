@@ -288,7 +288,7 @@ function DownloadDropdown() {
       <button
         onClick={() => setOpen(v => !v)}
         disabled={loading !== null}
-        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-gradient text-white text-sm font-semibold shadow-glow hover:opacity-90 transition-opacity disabled:opacity-60"
+        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pill text-white text-sm font-semibold shadow-pill hover:opacity-90 transition-opacity disabled:opacity-60"
       >
         {loading ? (
           <><span className="w-3.5 h-3.5 rounded-full border-2 border-white border-t-transparent animate-spin" /> Generating…</>
@@ -335,7 +335,7 @@ function ResumePage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-muted/30 pt-16 pb-12 px-4">
+    <div className="min-h-screen bg-white pt-16 pb-12 px-4">
 
       {/* Toolbar */}
       <div className="max-w-4xl mx-auto flex items-center justify-between mb-6">
@@ -347,7 +347,7 @@ function ResumePage() {
       </div>
 
       {/* Resume sheet */}
-      <div className="max-w-4xl mx-auto bg-card border border-border rounded-2xl shadow-card overflow-hidden">
+      <div className="max-w-4xl mx-auto bg-white border border-gray-200 rounded-2xl shadow-card overflow-hidden text-gray-900">
 
         {/* Header */}
         <div className="bg-brand-gradient p-7 text-white">
@@ -382,7 +382,7 @@ function ResumePage() {
           </div>
         </div>
 
-        <div className="p-7 grid md:grid-cols-[1fr_260px] gap-7">
+        <div className="p-7 grid md:grid-cols-[1fr_260px] gap-7 bg-white text-gray-900">
 
           {/* Left */}
           <div className="space-y-6">

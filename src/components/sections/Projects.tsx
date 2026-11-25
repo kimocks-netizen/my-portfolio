@@ -233,7 +233,7 @@ export function Projects() {
               onClick={() => setActive(f.value)}
               className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-all duration-200 ${
                 active === f.value
-                  ? 'bg-brand-gradient text-white border-transparent shadow-glow'
+                  ? 'bg-pill text-white border-transparent shadow-pill'
                   : 'bg-card border-border text-muted-foreground hover:text-foreground hover:border-primary/40'
               }`}
             >

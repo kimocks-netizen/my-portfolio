@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { motion } from 'motion/react'
 import { ArrowDown, Mail, FileText } from 'lucide-react'
 import { FloatingOrbs } from '@/components/effects/FloatingOrbs'
+import { TechMarquee } from '@/components/effects/TechMarquee'
 import { useTheme } from '@/hooks/useTheme'
 import { useNavigate } from '@tanstack/react-router'
 import { personal } from '@/data/personal'
@@ -203,7 +204,7 @@ export function Hero() {
             <motion.div {...fade(0.6)} className="flex flex-wrap gap-3 justify-center md:justify-start">
               <a
                 href="#projects"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-gradient text-white text-sm font-semibold shadow-glow hover:opacity-90 transition-opacity"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-pill text-white text-sm font-semibold shadow-pill hover:opacity-90 transition-opacity"
               >
                 View Projects
               </a>
@@ -233,6 +234,16 @@ export function Hero() {
           {/* Profile photo — 3D flip card */}
           <ProfileFlipCard photo={personal.photo} />
         </div>
+
+        {/* Tech marquee */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.0, duration: 0.6 }}
+          className="mt-10"
+        >
+          <TechMarquee />
+        </motion.div>
 
         {/* Scroll cue */}
         <motion.div

@@ -109,6 +109,13 @@
 
 @layer utilities {
   .bg-brand-gradient { background-image: var(--gradient-brand); }
+  .bg-pill {
+    background-image: linear-gradient(135deg, oklch(0.78 0.14 215) 0%, oklch(0.48 0.16 215) 100%);
+  }
+  .dark .bg-pill {
+    background-image: linear-gradient(135deg, oklch(0.88 0.14 210) 0%, oklch(0.62 0.18 210) 100%);
+  }
+  .shadow-pill { box-shadow: 0 4px 24px -6px oklch(0.55 0.15 215 / 0.5); }
   .bg-soft { background-image: var(--gradient-soft); }
   .text-brand-gradient {
     background-image: var(--gradient-brand);
