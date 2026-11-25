@@ -3,6 +3,7 @@ import { Route as rootRoute } from '../__root'
 import { useProject } from '@/features/projects/queries'
 import { motion } from 'motion/react'
 import { ArrowLeft, ArrowUpRight, ExternalLink } from 'lucide-react'
+import { TECH_ICONS } from '@/lib/tech-icons'
 
 const CATEGORY_COLORS: Record<string, string> = {
   fintech:   'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20',
@@ -103,7 +104,11 @@ function ProjectPage() {
               <p className="text-[10px] font-semibold tracking-widest uppercase text-muted-foreground mb-2">Tech Stack</p>
               <div className="flex flex-wrap gap-1.5">
                 {project.tech.map(t => (
-                  <span key={t} className="text-[10px] px-2.5 py-1 rounded-full bg-accent border border-border text-accent-foreground font-medium">
+                  <span key={t} className="inline-flex items-center gap-1.5 text-[10px] px-2.5 py-1 rounded-full bg-accent border border-border text-accent-foreground font-medium">
+                    {TECH_ICONS[t] && (
+                      <img src={TECH_ICONS[t]} alt={t} className="w-3.5 h-3.5 object-contain flex-shrink-0"
+                        onError={e => { (e.target as HTMLImageElement).style.display = 'none' }} />
+                    )}
                     {t}
                   </span>
                 ))}

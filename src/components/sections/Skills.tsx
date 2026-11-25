@@ -1,6 +1,7 @@
 import { motion } from 'motion/react'
 import { useQuery } from '@tanstack/react-query'
 import { skillsQueries } from '@/features/skills/queries'
+import { TECH_ICONS } from '@/lib/tech-icons'
 
 const GROUP_COLORS: Record<string, string> = {
   'Frontend':              'bg-primary/10 text-primary border-primary/20',
@@ -11,6 +12,29 @@ const GROUP_COLORS: Record<string, string> = {
   'DevOps & Tools':        'bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/20',
   'Security':              'bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20',
   'Real-Time & Messaging': 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border-cyan-500/20',
+}
+
+function SkillBadge({ skill, colorClass }: { skill: string; colorClass: string }) {
+  const icon = TECH_ICONS[skill]
+  return (
+    <motion.span
+      initial={{ opacity: 0, scale: 0.85 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.3 }}
+      className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border ${colorClass}`}
+    >
+      {icon && (
+        <img
+          src={icon}
+          alt={skill}
+          className="w-3.5 h-3.5 object-contain flex-shrink-0"
+          onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
+        />
+      )}
+      {skill}
+    </motion.span>
+  )
 }
 
 export function Skills() {
@@ -47,19 +71,12 @@ export function Skills() {
                 {group.group}
               </h3>
               <div className="flex flex-wrap gap-1.5">
-                {group.items.map((skill, si) => (
-                  <motion.span
+                {group.items.map(skill => (
+                  <SkillBadge
                     key={skill}
-                    initial={{ opacity: 0, scale: 0.85 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: gi * 0.06 + si * 0.03 }}
-                    className={`inline-block px-2.5 py-1 rounded-full text-xs font-medium border ${
-                      GROUP_COLORS[group.group] ?? 'bg-accent text-accent-foreground border-border'
-                    }`}
-                  >
-                    {skill}
-                  </motion.span>
+                    skill={skill}
+                    colorClass={GROUP_COLORS[group.group] ?? 'bg-accent text-accent-foreground border-border'}
+                  />
                 ))}
               </div>
             </motion.div>
