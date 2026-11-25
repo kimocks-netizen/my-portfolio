@@ -1,9 +1,10 @@
 import { createRoute, useNavigate } from '@tanstack/react-router'
 import { Route as rootRoute } from '../__root'
 import { useProject } from '@/features/projects/queries'
-import { motion } from 'motion/react'
-import { ArrowLeft, ArrowUpRight, ExternalLink } from 'lucide-react'
+import { motion, AnimatePresence } from 'motion/react'
+import { ArrowLeft, ArrowUpRight, ExternalLink, X, ZoomIn } from 'lucide-react'
 import { TECH_ICONS } from '@/lib/tech-icons'
+import { useState, useEffect } from 'react'
 
 const CATEGORY_COLORS: Record<string, string> = {
   fintech:   'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20',
@@ -25,10 +26,52 @@ export const Route = createRoute({
   component: ProjectPage,
 })
 
+function Lightbox({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    window.addEventListener('keydown', handler)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      window.removeEventListener('keydown', handler)
+      document.body.style.overflow = ''
+    }
+  }, [onClose])
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+        className="fixed inset-0 z-[200] bg-black/90 flex items-center justify-center p-4 cursor-zoom-out"
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+        >
+          <X size={18} />
+        </button>
+        <motion.img
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.9, opacity: 0 }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          src={src}
+          alt={alt}
+          onClick={e => e.stopPropagation()}
+          className="max-w-full max-h-[90vh] rounded-xl object-contain shadow-2xl cursor-default"
+        />
+      </motion.div>
+    </AnimatePresence>
+  )
+}
+
 function ProjectPage() {
   const { id } = Route.useParams()
   const navigate = useNavigate()
   const { data: project, isLoading } = useProject(id)
+  const [lightbox, setLightbox] = useState(false)
 
   if (isLoading) {
     return (
@@ -73,9 +116,18 @@ function ProjectPage() {
             className="rounded-2xl border border-border bg-card shadow-card overflow-hidden flex flex-col"
           >
             {/* Image */}
-            <div className="relative w-full overflow-hidden" style={{ aspectRatio: '16/9' }}>
+            <div
+              className="relative w-full overflow-hidden cursor-zoom-in group"
+              style={{ aspectRatio: '16/9' }}
+              onClick={() => project.image && setLightbox(true)}
+            >
               {project.image ? (
-                <img src={project.image} alt={project.title} className="w-full h-full object-cover object-top" />
+                <>
+                  <img src={project.image} alt={project.title} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                    <ZoomIn size={28} className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg" />
+                  </div>
+                </>
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-accent">
                   <span className="text-5xl font-bold text-brand-gradient">{project.title[0]}</span>
@@ -172,6 +224,11 @@ function ProjectPage() {
           </motion.div>
         </div>
       </div>
+
+      {/* Lightbox */}
+      {lightbox && project.image && (
+        <Lightbox src={project.image} alt={project.title} onClose={() => setLightbox(false)} />
+      )}
     </div>
   )
 }

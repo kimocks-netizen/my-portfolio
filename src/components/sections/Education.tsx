@@ -28,7 +28,7 @@ export function Education() {
           </h2>
         </motion.div>
 
-        <div className="max-w-3xl mx-auto space-y-5">
+        <div className="grid sm:grid-cols-3 gap-5 max-w-5xl mx-auto">
           {items.map((item, i) => (
             <motion.div
               key={item.id}
