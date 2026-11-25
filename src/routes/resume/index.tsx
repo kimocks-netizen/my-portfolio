@@ -268,6 +268,16 @@ function DownloadDropdown() {
 
   async function download(mode: Mode) {
     setOpen(false)
+    if (mode === 'full') {
+      // Download the real PDF directly
+      const a = document.createElement('a')
+      a.href = '/Bryne_Resume.pdf'
+      a.download = 'Bryne_Chikomo_Resume.pdf'
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+      return
+    }
     setLoading(mode)
     await generatePDF(mode)
     setLoading(null)

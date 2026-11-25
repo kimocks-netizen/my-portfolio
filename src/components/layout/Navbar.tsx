@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect, useLayoutEffect } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { Moon, Sun, Menu, X } from 'lucide-react'
+import { Moon, Sun, Menu, X, Eye, EyeOff } from 'lucide-react'
 import { useTheme } from '@/hooks/useTheme'
 import { useScramble } from '@/hooks/useScramble'
 import { useActiveSection } from '@/hooks/useActiveSection'
@@ -37,7 +37,7 @@ export function Navbar() {
   const { theme, toggleTheme } = useTheme()
   const navigate = useNavigate()
   const routerState = useRouterState()
-  const isOnProjectPage = routerState.location.pathname.startsWith('/projects/')
+  const isOnSubPage = routerState.location.pathname !== '/'
   const active = useActiveSection(SECTION_IDS)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [pillStyle, setPillStyle] = useState<{ left: number; width: number } | null>(null)
@@ -49,8 +49,7 @@ export function Navbar() {
   function handleNavClick(href: string) {
     setMobileOpen(false)
     const hash = href.replace('#', '')
-    if (isOnProjectPage) {
-      // navigate home then scroll
+    if (isOnSubPage) {
       navigate({ to: '/', hash })
     } else {
       const el = document.getElementById(hash)
@@ -137,8 +136,12 @@ export function Navbar() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.9 }}
             onClick={() => navigate({ to: '/resume' })}
-            className="hidden sm:inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-semibold bg-brand-gradient text-white shadow-glow hover:opacity-90 transition-opacity"
+            onMouseEnter={e => e.currentTarget.setAttribute('data-hovered', 'true')}
+            onMouseLeave={e => e.currentTarget.removeAttribute('data-hovered')}
+            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-brand-gradient text-white shadow-glow hover:opacity-90 transition-opacity group"
           >
+            <Eye size={12} className="group-hover:hidden" />
+            <EyeOff size={12} className="hidden group-hover:block" />
             Resume
           </motion.button>
           <motion.button
