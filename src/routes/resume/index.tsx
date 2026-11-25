@@ -316,6 +316,14 @@ function DownloadDropdown() {
 function ResumePage() {
   const navigate = useNavigate()
 
+  // Force light mode for resume — restore on leave
+  useEffect(() => {
+    const html = document.documentElement
+    const had = html.classList.contains('dark')
+    html.classList.remove('dark')
+    return () => { if (had) html.classList.add('dark') }
+  }, [])
+
   return (
     <div className="min-h-screen bg-muted/30 pt-16 pb-12 px-4">
 

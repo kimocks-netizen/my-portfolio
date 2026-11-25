@@ -127,6 +127,16 @@ export function Navbar() {
 
         {/* Right controls */}
         <div className="flex items-center gap-2">
+          {/* Resume pill */}
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.9 }}
+            onClick={() => navigate({ to: '/resume' })}
+            className="hidden sm:inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-semibold bg-brand-gradient text-white shadow-glow hover:opacity-90 transition-opacity"
+          >
+            Resume
+          </motion.button>
           <motion.button
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -177,6 +187,19 @@ export function Navbar() {
                   </button>
                 </motion.div>
               ))}
+              {/* Resume link in mobile menu */}
+              <motion.div
+                initial={{ opacity: 0, x: -12 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.04 * NAV_ITEMS.length }}
+              >
+                <button
+                  onClick={() => { setMobileOpen(false); navigate({ to: '/resume' }) }}
+                  className="block w-full text-left py-2 text-sm font-semibold text-primary"
+                >
+                  Resume
+                </button>
+              </motion.div>
             </div>
           </motion.div>
         )}
