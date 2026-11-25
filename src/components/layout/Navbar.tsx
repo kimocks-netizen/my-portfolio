@@ -78,7 +78,7 @@ export function Navbar() {
       initial={{ y: -64, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed top-0 left-0 right-0 z-50 h-16 border-b border-border/50 backdrop-blur-md bg-background/80"
+      className="fixed top-0 left-0 right-0 z-50 h-16 border-b border-border/50 backdrop-blur-md bg-background/95 dark:bg-[oklch(0.13_0.03_255)/98]"
     >
       <div className="max-w-6xl mx-auto h-full flex items-center justify-between px-6">
         {/* Brand */}
@@ -138,7 +138,7 @@ export function Navbar() {
             onClick={() => navigate({ to: '/resume' })}
             onMouseEnter={e => e.currentTarget.setAttribute('data-hovered', 'true')}
             onMouseLeave={e => e.currentTarget.removeAttribute('data-hovered')}
-            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-brand-gradient text-white shadow-glow hover:opacity-90 transition-opacity group"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-pill text-white shadow-pill hover:opacity-90 transition-opacity group"
           >
             <Eye size={12} className="group-hover:hidden" />
             <EyeOff size={12} className="hidden group-hover:block" />

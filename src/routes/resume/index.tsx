@@ -345,34 +345,35 @@ function ResumePage() {
       <div className="max-w-4xl mx-auto bg-white border border-gray-200 rounded-2xl shadow-card overflow-hidden text-gray-900">
 
         {/* Header */}
-        <div className="bg-brand-gradient p-7 text-white">
-          <div className="flex items-center gap-5">
-            {/* Photo */}
-            <div className="flex-shrink-0 w-20 h-20 rounded-full overflow-hidden border-2 border-white/30 shadow-lg">
-              <img src={personal.photo} alt={personal.name} className="w-full h-full object-cover object-top" />
+        <div className="relative overflow-hidden" style={{ minHeight: '140px' }}>
+          <img
+            src="/resume-header.png"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-0" />
+
+          <div className="relative z-10 px-7 py-7 text-black flex flex-col items-center text-center">
+            <h1 className="text-2xl sm:text-3xl font-black tracking-tight">{personal.name}</h1>
+            <p className="text-black/80 text-sm sm:text-base mt-0.5 font-bold">{personal.title}</p>
+            <div className="flex flex-wrap items-center justify-center gap-3 mt-2">
+              <a href={personal.github} target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-1.5 text-xs font-semibold text-black/70 hover:text-black transition-colors">
+                <GithubIcon /> github.com/kimocks-netizen
+              </a>
+              <a href={personal.linkedin} target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-1.5 text-xs font-semibold text-black/70 hover:text-black transition-colors">
+                <LinkedInIcon /> in/brynetinashechikomo
+              </a>
+              <a href={PORTFOLIO_URL} target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-1.5 text-xs font-semibold text-black/70 hover:text-black transition-colors">
+                <Globe size={12} /> My Portfolio: {PORTFOLIO_URL.replace(/https?:\/\//, '')}
+              </a>
             </div>
-            <div className="flex-1 min-w-0">
-              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">{personal.name}</h1>
-              <p className="text-white/80 mt-0.5 text-sm sm:text-base">{personal.title}</p>
-              <div className="flex flex-wrap items-center gap-4 mt-2">
-                <a href={personal.github} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-xs text-white/70 hover:text-white transition-colors">
-                  <GithubIcon /> github.com/kimocks-netizen
-                </a>
-                <a href={personal.linkedin} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-xs text-white/70 hover:text-white transition-colors">
-                  <LinkedInIcon /> in/brynetinashechikomo
-                </a>
-                <a href={PORTFOLIO_URL} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-xs text-white/70 hover:text-white transition-colors">
-                  <Globe size={12} /> My Portfolio: {PORTFOLIO_URL.replace(/https?:\/\//, '')}
-                </a>
-              </div>
-            </div>
-            <div className="flex-shrink-0 flex flex-col gap-1 text-xs text-white/75 text-right">
-              <span className="flex items-center justify-end gap-1.5"><Mail size={11} />{personal.email}</span>
-              <span className="flex items-center justify-end gap-1.5"><Phone size={11} />{personal.phone}</span>
-              <span className="flex items-center justify-end gap-1.5"><MapPin size={11} />{personal.location}</span>
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-0.5 mt-1 text-xs font-semibold text-black/70">
+              <span className="flex items-center gap-1.5"><Mail size={11} />{personal.email}</span>
+              <span className="flex items-center gap-1.5"><Phone size={11} />{personal.phone}</span>
+              <span className="flex items-center gap-1.5"><MapPin size={11} />{personal.location}</span>
             </div>
           </div>
         </div>
